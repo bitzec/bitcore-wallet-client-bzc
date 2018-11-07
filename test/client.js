@@ -23,7 +23,7 @@ var Bitcore_ = {
 
 var BitcorePayPro = require('bitcore-payment-protocol');
 
-var BWS = require('bitcore-wallet-service-bzc');
+var BWS = require('bitcore-wallet-service');
 
 var Common = require('../lib/common');
 var Constants = Common.Constants;
