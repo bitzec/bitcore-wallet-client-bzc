@@ -15,15 +15,15 @@ var tingodb = require('tingodb')({
 
 var log = require('../lib/log');
 
-var Bitcore = require('bitcore-lib-btcz');
+var Bitcore = require('bitcore-lib-bzc');
 var Bitcore_ = {
-  btcz: Bitcore,
+  bzc: Bitcore,
 };
 
 
 var BitcorePayPro = require('bitcore-payment-protocol');
 
-var BWS = require('bitcore-wallet-service-btcz');
+var BWS = require('bitcore-wallet-service-bzc');
 
 var Common = require('../lib/common');
 var Constants = Common.Constants;
@@ -37,11 +37,11 @@ var Errors = require('../lib/errors');
 
 var helpers = {};
 
-helpers.toSatoshi = function(btcz) {
-  if (_.isArray(btcz)) {
-    return _.map(btcz, helpers.toSatoshi);
+helpers.toSatoshi = function(bzc) {
+  if (_.isArray(bzc)) {
+    return _.map(bzc, helpers.toSatoshi);
   } else {
-    return parseFloat((btcz * 1e8).toPrecision(12));
+    return parseFloat((bzc * 1e8).toPrecision(12));
   }
 };
 
@@ -117,7 +117,7 @@ helpers.createAndJoinWallet = function(clients, m, n, opts, cb) {
 
   opts = opts || {};
 
-  var coin = opts.coin || 'btcz';
+  var coin = opts.coin || 'bzc';
   var network = opts.network || 'testnet';
 
   clients[0].seedFromRandomWithMnemonic({
@@ -923,7 +923,7 @@ describe('client API', function() {
         var signatures = Client.signTxp(txp, derivedPrivateKey['BIP44']);
         signatures.length.should.be.equal(utxos.length);
       });
-      it('should sign btcz proposal correctly', function() {
+      it('should sign bzc proposal correctly', function() {
         var toAddress = 'msj42CCGruhRsFrGATiUuh25dtxYtnpbTx';
         var changeAddress = 'msj42CCGruhRsFrGATiUuh25dtxYtnpbTx';
 
@@ -1004,7 +1004,7 @@ describe('client API', function() {
         var walletId = Uuid.v4();
         var walletPrivKey = new Bitcore.PrivateKey();
         var network = i % 2 == 0 ? 'testnet' : 'livenet';
-        var coin = i % 3 == 0 ? 'bch' : 'btcz';
+        var coin = i % 3 == 0 ? 'bch' : 'bzc';
         var secret = Client._buildSecret(walletId, walletPrivKey, coin, network);
         var result = Client.parseSecret(secret);
         result.walletId.should.equal(walletId);
@@ -1022,7 +1022,7 @@ describe('client API', function() {
     it('should create secret and parse secret from string', function() {
       var walletId = Uuid.v4();
       var walletPrivKey = new Bitcore.PrivateKey();
-      var coin = 'btcz';
+      var coin = 'bzc';
       var network = 'testnet';
       var secret = Client._buildSecret(walletId, walletPrivKey.toString(), coin, network);
       var result = Client.parseSecret(secret);
@@ -1031,9 +1031,9 @@ describe('client API', function() {
       result.coin.should.equal(coin);
       result.network.should.equal(network);
     });
-    it('should default to btcz for secrets not specifying coin', function() {
+    it('should default to bzc for secrets not specifying coin', function() {
       var result = Client.parseSecret('5ZN64RxKWCJXcy1pZwgrAzL1NnN5FQic5M2tLJVG5bEHaGXNRQs2uzJjMa9pMAbP5rz9Vu2xSaT');
-      result.coin.should.equal('btcz');
+      result.coin.should.equal('bzc');
     });
   });
 
@@ -1647,14 +1647,14 @@ describe('client API', function() {
   });
 
   describe('Network fees', function() {
-    it('should get current fee levels for BTCZ', function(done) {
+    it('should get current fee levels for bzc', function(done) {
       blockchainExplorerMock.setFeeLevels({
         1: 40000,
         3: 20000,
         10: 18000,
       });
       clients[0].credentials = {};
-      clients[0].getFeeLevels('btcz', 'livenet', function(err, levels) {
+      clients[0].getFeeLevels('bzc', 'livenet', function(err, levels) {
         should.not.exist(err);
         should.exist(levels);
         _.difference(['priority', 'normal', 'economy'], _.map(levels, 'level')).should.be.empty;
@@ -2568,9 +2568,9 @@ describe('client API', function() {
       });
     };
 
-    describe('BTCZ', function(done) {
+    describe('bzc', function(done) {
       beforeEach(function(done) {
-        setup(2, 3, 'btcz', 'testnet', done);
+        setup(2, 3, 'bzc', 'testnet', done);
       });
 
       it('Should sign proposal', function(done) {
@@ -5160,10 +5160,10 @@ describe('client API', function() {
   });
 
   var addrMap = {
-    btcz: ['1PuKMvRFfwbLXyEPXZzkGi111gMUCs6uE3','1GG3JQikGC7wxstyavUBDoCJ66bWLLENZC'],
+    bzc: ['1PuKMvRFfwbLXyEPXZzkGi111gMUCs6uE3','1GG3JQikGC7wxstyavUBDoCJ66bWLLENZC'],
     bch: ['CfNCvxmKYzZsS78pDKKfrDd2doZt3w4jUs','CXivsT4p9F6Us1oQGfo6oJpKiDovJjRVUE']
   };
-  _.each(['bch', 'btcz'], function(coin) {
+  _.each(['bch', 'bzc'], function(coin) {
     var addr= addrMap[coin];
 
     describe('Sweep paper wallet ' + coin, function() {
@@ -5280,15 +5280,15 @@ describe('client API', function() {
         }],
         expected: '0.01',
       }, {
-        args: [1, 'btcz'],
+        args: [1, 'bzc'],
         expected: '0.00',
       }, {
-        args: [1, 'btcz', {
+        args: [1, 'bzc', {
           fullPrecision: true
         }],
         expected: '0.00000001',
       }, {
-        args: [1234567899999, 'btcz', {
+        args: [1234567899999, 'bzc', {
           thousandsSeparator: ' ',
           decimalSeparator: ','
         }],
