@@ -23,7 +23,7 @@ var Bitcore_ = {
 
 var BitcorePayPro = require('bitcore-payment-protocol');
 
-var BWS = require('bitcore-wallet-service-bzc');
+var BWS = require('bitcore-wallet-service');
 
 var Common = require('../lib/common');
 var Constants = Common.Constants;
@@ -2763,7 +2763,7 @@ describe('client API', function() {
           // From the hardcoded paypro request
           tx.outputs[0].amount.should.equal(404500);
           tx.outputs[0].toAddress.should.equal('mjfjcbuYwBUdEyq2m7AezjCAR4etUBqyiE');
-          tx.message.should.equal('Payment request for bitzec invoice CibEJJtG1t9H77KmM61E2t for merchant testCopay');
+          tx.message.should.equal('Payment request for BitPay invoice CibEJJtG1t9H77KmM61E2t for merchant testCopay');
           tx.payProUrl.should.equal('dummy');
           done();
         });
@@ -2792,7 +2792,7 @@ describe('client API', function() {
           // From the hardcoded paypro request
           tx.outputs[0].amount.should.equal(404500);
           tx.outputs[0].toAddress.should.equal('mjfjcbuYwBUdEyq2m7AezjCAR4etUBqyiE');
-          tx.message.should.equal('Payment request for bitzec invoice CibEJJtG1t9H77KmM61E2t for merchant testCopay');
+          tx.message.should.equal('Payment request for BitPay invoice CibEJJtG1t9H77KmM61E2t for merchant testCopay');
           tx.payProUrl.should.equal('dummy');
           done();
         });
@@ -2825,8 +2825,8 @@ describe('client API', function() {
                 var args = http.lastCall.args[0];
                 args.method.should.equal('POST');
                 args.body.length.should.be.within(440, 460);
-                memo.should.equal('Transaction received by bitzec. Invoice will be marked as paid if the transaction is confirmed.');
-                zz.message.should.equal('Payment request for bitzec invoice CibEJJtG1t9H77KmM61E2t for merchant testCopay');
+                memo.should.equal('Transaction received by BitPay. Invoice will be marked as paid if the transaction is confirmed.');
+                zz.message.should.equal('Payment request for BitPay invoice CibEJJtG1t9H77KmM61E2t for merchant testCopay');
                 done();
               });
             });
@@ -3035,7 +3035,7 @@ describe('client API', function() {
           // From the hardcoded paypro request
           tx.amount.should.equal(404500);
           tx.outputs[0].toAddress.should.equal('mjfjcbuYwBUdEyq2m7AezjCAR4etUBqyiE');
-          tx.message.should.equal('Payment request for bitzec invoice CibEJJtG1t9H77KmM61E2t for merchant testCopay');
+          tx.message.should.equal('Payment request for BitPay invoice CibEJJtG1t9H77KmM61E2t for merchant testCopay');
           tx.payProUrl.should.equal('dummy');
           done();
         });

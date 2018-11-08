@@ -1,6 +1,6 @@
 {
   "name": "bitcore-wallet-client-bzc",
-  "description": "Client for bitcore-wallet-service-bzc",
+  "description": "Client for bitcore-wallet-service",
   "author": "bitzec Community",
   "version": "1.0.3",
   "license": "MIT",
@@ -36,7 +36,7 @@
     "superagent": "^3.4.1"
   },
   "devDependencies": {
-    "bitcore-wallet-service-bzc": "git+https://github.com/bitzec/bitcore-wallet-service-bzc.git",
+    "bitcore-wallet-service": "git+https://github.com/bitzec/bitcore-wallet-service.git",
     "browserify": "^13.1.0",
     "chai": "^1.9.1",
     "coveralls": "^2.11.2",
