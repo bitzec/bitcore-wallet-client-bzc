@@ -32,7 +32,7 @@ var Client = require('bitcore-wallet-client-bzc');
 
 
 var fs = require('fs');
-var BWS_INSTANCE_URL = 'https://bws.bitzec.ph/bws/api'
+var BWS_INSTANCE_URL = 'https://bws.bitzec.cf/bws/api'
 
 var client = new Client({
   baseUrl: BWS_INSTANCE_URL,
@@ -58,7 +58,7 @@ var Client = require('bitcore-wallet-client-bzc');
 
 
 var fs = require('fs');
-var BWS_INSTANCE_URL = 'https://bws.bitzec.ph/bws/api'
+var BWS_INSTANCE_URL = 'https://bws.bitzec.cf/bws/api'
 
 var secret = process.argv[2];
 if (!secret) {
