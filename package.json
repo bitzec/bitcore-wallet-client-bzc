@@ -1,8 +1,8 @@
 {
   "name": "bitcore-wallet-client-bzc",
   "description": "Client for bitcore-wallet-service-bzc",
-  "author": "bitzec Community",
-  "version": "1.0.3",
+  "author": "bitzec",
+  "version": "2.0.0",
   "license": "MIT",
   "keywords": [
     "bitcoin",
