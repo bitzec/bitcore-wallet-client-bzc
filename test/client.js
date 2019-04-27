@@ -15,7 +15,7 @@ var tingodb = require('tingodb')({
 
 var log = require('../lib/log');
 
-var Bitcore = require('bitcore-lib-bitzec');
+var Bitcore = require('bitcore-lib-bzc');
 var Bitcore_ = {
   bzc: Bitcore,
 };
